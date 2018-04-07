@@ -1,23 +1,23 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './common/Header'
+import Sidebar from './common/Sidebar'
 import Home from './home/Home'
 import About from './about/About'
-import Utils from './utils/Utils'
 import Nhapkho from './utils/nhapkho/Nhapkho'
 import PhieuNhapKho from './utils/nhapkho/PhieuNhapKho';
 import '../style/style.scss'
 
 const App = () => (
 <Router>
-	<div>
+	<div className="wrapper">
 		<Header />
-		<div>
+		<Sidebar />
+		<div className="content-wrapper">
 			<Route exact path="/" component={Home}/>
 			<Route path="/about" component={About}/>
-			<Route exact path="/utils/" component={Utils}/>
-			<Route exact path="/utils/nhapkho" component={Nhapkho}/>	
-			<Route path={`/utils/nhapkho/:recordId`} component={PhieuNhapKho} />     	
+			<Route exact path="/GoodsReceipt/Index" component={Nhapkho}/>	
+			<Route path="/GoodsReceipt/Record/:recordId" component={PhieuNhapKho} />     	
 		</div>
 	</div>
 </Router>
