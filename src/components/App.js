@@ -6,7 +6,9 @@ import Home from './home/Home'
 import About from './about/About'
 import Nhapkho from './utils/nhapkho/Nhapkho'
 import PhieuNhapKho from './utils/nhapkho/PhieuNhapKho';
+import TaoPhieuNhapKho from './utils/nhapkho/TaoMoi';
 import '../style/style.scss'
+
 
 const App = () => (
 <Router>
@@ -18,9 +20,11 @@ const App = () => (
 			<Route path="/about" component={About}/>
 			<Route exact path="/GoodsReceipt/Index" component={Nhapkho}/>	
 			<Route path="/GoodsReceipt/Record/:recordId" component={PhieuNhapKho} />     	
+			<Route path="/GoodsReceipt/new" component={TaoPhieuNhapKho} />     	
 		</div>
 	</div>
 </Router>
 )
+
 
 export default App
