@@ -3,15 +3,15 @@ import { LinkContainer } from 'react-router-bootstrap'
 
 
 export default class Nhapkho extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { value: '' };
+  constructor(props) {
+    super(props);
+    this.state = { value: '' };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-    handleChange(event) {
+  handleChange(event) {
         this.setState({ value: event.target.value });
     }
 
@@ -50,7 +50,7 @@ export default class Nhapkho extends Component {
                                         <input type="date" className="form-control" id="inputDate" placeholder="" />
                                     </div>
                                 </div>
-                                <table id="userdata" className="table table-bordered">
+                                <table id="userdata" className="table">
                                     <thead>
                                         <tr>
                                             <th>STT</th>
@@ -106,6 +106,6 @@ export default class Nhapkho extends Component {
                     {/* <!-- /.box-body --> */}
                 </div>
             </div>
-        )
+        ) 
     }
 }

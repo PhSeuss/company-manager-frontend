@@ -2,17 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Proptypes from 'prop-types'
 import { LinkContainer } from 'react-router-bootstrap'
-import { loadStorageRecord, deleteStorageRecord } from '../../../actions/storageRecordActions'
-import PhieuNhapKho from './PhieuNhapKho';
+import { loadStorageRecords, deleteStorageRecord } from '../../../actions/storageRecordActions'
 
 export class Nhapkho extends Component {
 
   componentDidMount() {
-    this.props.loadStorageRecord()
+    this.props.loadStorageRecords()
   }
-  componentWillUnmount() {
-    console.log('will umount')
-  }
+
   render() {
     return (
       <section className="content">
@@ -37,52 +34,22 @@ export class Nhapkho extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>000012</td>
-                      <td>Nguyên vật liệu</td>
-                      <td>12/03/2018</td>
-                      <td>
-                        <div className="btn-group">
-                          <LinkContainer to="/GoodsReceipt/Record/1">
-                            <button type="button" className="btn btn-success">Details</button>
-                          </LinkContainer>
-                          <button type="button" className="btn btn-primary">Edit</button>
-                          <button type="button" className="btn btn-danger">Delete</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>000012</td>
-                      <td>Nguyên vật liệu</td>
-                      <td>12/03/2018</td>
-                      <td>
-                        <div className="btn-group">
-                          <LinkContainer to="/GoodsReceipt/Record/1">
-                            <button type="button" className="btn btn-success">Details</button>
-                          </LinkContainer>
-                          <button type="button" className="btn btn-primary">Edit</button>
-                          <button type="button" className="btn btn-danger">Delete</button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>000012</td>
-                      <td>Nguyên vật liệu</td>
-                      <td>12/03/2018</td>
-                      <td>
-                        <div className="btn-group">
-                          <button type="button" className="btn btn-success">Action</button>
-                          <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                            <span className="caret" />
-                            <span className="sr-only">Toggle Dropdown</span>
-                          </button>
-                          <ul className="dropdown-menu" role="menu">
-                            <li><a href="#">Edit</a></li>
-                            <li><a href="#">Delete</a></li>
-                          </ul>
-                        </div>
-                      </td>
-                    </tr>
+                    {this.props.storageRecords.map(record => (
+                      <tr key={record.id}>
+                        <td>{record.record_id}</td>
+                        <td>{record.storage_type}</td>
+                        <td>{record.created_at}</td>
+                        <td>
+                          <div className="btn-group">
+                            <LinkContainer to="/GoodsReceipt/Record/1">
+                              <button type="button" className="btn btn-success">Details</button>
+                            </LinkContainer>
+                            <button type="button" className="btn btn-primary">Edit</button>
+                            <button type="button" className="btn btn-danger">Delete</button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
 
                 </table>
@@ -125,4 +92,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { loadStorageRecord, deleteStorageRecord })(Nhapkho)
+export default connect(mapStateToProps, { loadStorageRecords, deleteStorageRecord })(Nhapkho)

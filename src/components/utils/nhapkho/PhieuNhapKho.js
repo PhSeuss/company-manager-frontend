@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { LinkContainer } from 'react-router-bootstrap'
+import { connect } from 'react-redux'
+import Proptypes from 'prop-types'
+import { loadSelectedRecord } from '../../../actions/storageRecordActions'
 
 
-const PhieuNhapKho = () => (
+
+
+export class PhieuNhapKho extends Component {
+    constructor(props) {
+      super(props);
+        props.loadSelectedRecord(props.match.params.recordId)
+      }
+    componentDidMount() {
+        
+    }
+    componentWillUnmount(){
+    }
+    render() {
+        const record = this.props.selectedRecord
+        const items = record.storage_items
+        return (
     <div className="content">
         
         <div className="box box-primary">
@@ -19,9 +37,9 @@ const PhieuNhapKho = () => (
                     </div>
                     <div className="col-xs-3">
                         <br />
-                        <p>000002</p>
-                        <p>Nguyên vật liệu</p>
-                        <p>12/03/2018</p>
+                        <p>{record.record_id}</p>
+                        <p>{record.storage_type}</p>
+                        <p>{record.created_at}</p>
                         <br />
                     </div>
                 </div>
@@ -39,36 +57,19 @@ const PhieuNhapKho = () => (
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>NVL</td>
-                                <td>ABC</td>
-                                <td>Cái</td>
-                                <td>12</td>
-                                <td>23000</td>
-                                <td>100000</td>
-                                <td>Bullshit</td>
+                          {record.storage_items.map(item => (
+                            <tr key={item.id}>
+                              <td>{item.id}</td>
+                              <td>{item.ma_hang}</td>
+                              <td>{item.ten_hang}</td>
+                              <td>{item.dvt}</td>
+                              <td>{item.so_luong}</td>
+                              <td>{item.don_gia}</td>
+                              <td>{item.thanh_tien}</td>
+                              <td>{item.ghi_chu}</td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>NVL</td>
-                                <td>ABC</td>
-                                <td>Cái</td>
-                                <td>12</td>
-                                <td>23000</td>
-                                <td>100000</td>
-                                <td>Bullshit</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>NVL</td>
-                                <td>ABC</td>
-                                <td>Cái</td>
-                                <td>12</td>
-                                <td>23000</td>
-                                <td>100000</td>
-                                <td>Bullshit</td>
-                            </tr>
+                            ))}
+
                         </tbody>
                     </table>
                     <br/>
@@ -83,6 +84,17 @@ const PhieuNhapKho = () => (
             {/* <!-- /.box-body --> */}
         </div>
     </div>
-)
+        )
+    }
+}
 
-export default PhieuNhapKho
+
+function mapStateToProps(state) {
+  return {
+    selectedRecord: state.selectedStorageRecord
+  }
+}
+
+export default connect(
+    mapStateToProps, { loadSelectedRecord }
+    )(PhieuNhapKho)

@@ -1,10 +1,14 @@
 class storageRecordApi {  
   static getAllRecords() {
-    return fetch('https://jsonplaceholder.typicode.com/posts')
+    return fetch('http://localhost:4000/api/v1/storagees')
     .then(response => response.json())
     .catch(error => error)
   }
-
+  static getSelectedRecord(recordId) {
+    return fetch(`http://localhost:4000/api/v1/storagees/${recordId}`)
+    .then(response => response.json())
+    .catch(error => error)
+  }
   static deleteRecord(record) {
     const request = new Request(`https://jsonplaceholder.typicode.com/posts/${record.id}`, {
       method: 'DELETE'
