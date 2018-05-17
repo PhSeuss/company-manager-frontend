@@ -11,7 +11,6 @@ export function deleteRecordSuccess(storageRecord) {
   return {type: types.DETELE_STORAGE_RECORDS_SUCCESS, storageRecord}
 }
 
-
 export function loadStorageRecords() {  
   return (dispatch) => storageRecordApi.getAllRecords()
     .then(storageRecords => dispatch(loadRecordsSuccess(storageRecords)))
@@ -24,11 +23,12 @@ export function loadSelectedRecord(recordId) {
     .catch(error => {throw(error)})
 }
 
-export function deleteStorageRecord(storageRecord) {
-  return (dispatch) => storageRecordApi.deleteRecord(storageRecord)
-    .then((message) => {
+export function deleteStorageRecord(recordId) {
+  console.log("deleteStorageRecord");
+  return (dispatch) => storageRecordApi.deleteRecord(recordId)
+    .then((message)=>{
       console.log(message)
-      dispatch(deleteRecordSuccess(storageRecord))
+      dispatch(loadStorageRecords())
     })
     .catch(error => {throw(error)})
 }

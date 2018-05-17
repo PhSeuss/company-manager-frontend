@@ -6,10 +6,15 @@ import { loadStorageRecords, deleteStorageRecord } from '../../../actions/storag
 
 export class Nhapkho extends Component {
 
+  constructor(props){
+    super(props)
+  }
   componentDidMount() {
     this.props.loadStorageRecords()
   }
-
+  handleDelete(recordId){
+    this.props.deleteStorageRecord(recordId)
+  }
   render() {
     return (
       <section className="content">
@@ -36,16 +41,18 @@ export class Nhapkho extends Component {
                   <tbody>
                     {this.props.storageRecords.map(record => (
                       <tr key={record.id}>
-                        <td>{record.record_id}</td>
+                        <td>{record.number}</td>
                         <td>{record.storage_type}</td>
                         <td>{record.created_at}</td>
                         <td>
                           <div className="btn-group">
-                            <LinkContainer to="/GoodsReceipt/Record/1">
+                            <LinkContainer to={"/GoodsReceipt/Record/" + record.id } >
                               <button type="button" className="btn btn-success">Details</button>
                             </LinkContainer>
-                            <button type="button" className="btn btn-primary">Edit</button>
-                            <button type="button" className="btn btn-danger">Delete</button>
+                            <LinkContainer to={"/GoodsReceipt/Record/" + record.id +"/Edit"} >
+                              <button type="button" className="btn btn-primary">Edit</button>
+                            </LinkContainer>
+                            <button type="button" className="btn btn-danger" onClick={()=>this.handleDelete(record.id)}>Delete</button>
                           </div>
                         </td>
                       </tr>

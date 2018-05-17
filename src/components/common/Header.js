@@ -41,7 +41,7 @@ const Home = () => (
 											</div>
 											<h4>
 												Support Team
-                        <small><i className="fa fa-clock-o" /> 5 mins</small>
+						<small><i className="fa fa-clock-o" /> 5 mins</small>
 											</h4>
 											<p>Why not buy a new awesome theme?</p>
 										</a>
@@ -54,7 +54,7 @@ const Home = () => (
 											</div>
 											<h4>
 												AdminLTE Design Team
-                        <small><i className="fa fa-clock-o" /> 2 hours</small>
+						<small><i className="fa fa-clock-o" /> 2 hours</small>
 											</h4>
 											<p>Why not buy a new awesome theme?</p>
 										</a>
@@ -66,7 +66,7 @@ const Home = () => (
 											</div>
 											<h4>
 												Developers
-                        <small><i className="fa fa-clock-o" /> Today</small>
+						<small><i className="fa fa-clock-o" /> Today</small>
 											</h4>
 											<p>Why not buy a new awesome theme?</p>
 										</a>
@@ -89,7 +89,7 @@ const Home = () => (
 								<img src="dist/img/user2-160x160.jpg" className="img-circle" alt="" />
 								<p>
 									anonymos - shitty job
-                  <small>Member since Nov. 2012</small>
+				  <small>Member since Nov. 2012</small>
 								</p>
 							</li>
 							{/* <!-- Menu Footer--> */}
